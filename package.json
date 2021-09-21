@@ -1,0 +1,87 @@
+{
+  "name": "react-facebook-connect",
+  "version": "0.1.0",
+  "keywords": [],
+  "description": "",
+  "main": "dist/index.min.js",
+  "module": "dist/index.es.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "author": "aviranbergic <72141009+aviranbergic@users.noreply.github.com>",
+  "repository": {
+    "url": "",
+    "type": "git"
+  },
+  "homepage": "",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start": "rollup -c rollup.config.js -w",
+    "build": "tsc && rollup -c rollup.config.js && yarn make:docs",
+    "make:docs": "typedoc",
+    "coverage": "codecov -e TRAVIS_NODE_VERSION -f coverage/*.json",
+    "test": "jest --coverage",
+    "test:watch": "jest --coverage --watch",
+    "test:ci": "cross-env CI=1 jest",
+    "predeploy": "cd example && yarn install && yarn run build",
+    "deploy": "gh-pages -d example/build"
+  },
+  "engines": {
+    "node": ">=10",
+    "npm": ">=6"
+  },
+  "peerDependencies": {
+    "react": ">=17",
+    "react-dom": ">=17"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^13.1.0",
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/react": "^12.0.0",
+    "@types/jest": "^27.0.0",
+    "@types/node": "^16.6.0",
+    "@types/react": "^17.0.17",
+    "@types/react-dom": "^17.0.9",
+    "@typescript-eslint/eslint-plugin": "^4.29.1",
+    "@typescript-eslint/parser": "^4.29.1",
+    "cross-env": "^7.0.3",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.24.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^3.4.0",
+    "eslint-plugin-promise": "^5.1.0",
+    "eslint-plugin-react": "^7.24.0",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "eslint-plugin-standard": "^5.0.0",
+    "gh-pages": "^3.2.3",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^27.0.6",
+    "lint-staged": "^11.1.2",
+    "postcss": "^8.3.6",
+    "prettier": "^2.3.2",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.1",
+    "rollup": "^2.56.2",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-json": "^4.0.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rollup-plugin-postcss": "^4.0.1",
+    "rollup-plugin-sourcemaps": "^0.6.3",
+    "rollup-plugin-terser": "^7.0.2",
+    "rollup-plugin-typescript2": "^0.30.0",
+    "ts-jest": "^27.0.4",
+    "typedoc": "^0.21.5",
+    "typescript": "^4.3.5"
+  },
+  "lint-staged": {
+    "src/**/*.{ts,tsx}": [
+      "./node_modules/.bin/prettier --write",
+      "./node_modules/.bin/eslint"
+    ]
+  }
+}
