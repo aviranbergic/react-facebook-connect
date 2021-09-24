@@ -6,11 +6,11 @@ export interface FacebookButtonProps {
   cssClass?: string;
   icon?: any;
   buttonStyle?: object;
-	onClick: (e? : any) => { },
-	onFocus: (e? : any) => { },
-  onBlur: (e? : any) => { },
-	isDisabled: boolean,
-	ariaLabel: string,
+	onClick?: (e? : any) => { },
+	onFocus?: (e? : any) => { },
+  onBlur?: (e? : any) => { },
+	isDisabled?: boolean,
+	ariaLabel?: string,
 }
 
 const calculateResponsivenesss = (
@@ -47,11 +47,11 @@ export const FacebookButton: FunctionComponent<FacebookButtonProps> = ({
 		isDisabled = false,
 		buttonStyle = getFacebookButtonStyle(isDisabled),
 		cssClass,
-		onClick,
-		onBlur,
-		onFocus,
-		icon,
-		ariaLabel,
+		onClick = () => {},
+		onBlur = () => {},
+		onFocus = () => {},
+		icon = undefined,
+		ariaLabel = 'facebook connect button',
 }) => {
 
   return (
