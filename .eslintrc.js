@@ -24,7 +24,7 @@ module.exports = {
     'plugin:@typescript-eslint/eslint-recommended',
   ],
   rules: {
-    'prettier/prettier': 'error',
+    'prettier/prettier': 'off',
     '@typescript-eslint/explicit-function-return-type': 'off',
     'no-use-before-define': 'off',
     '@typescript-eslint/no-use-before-define': ['error'],
