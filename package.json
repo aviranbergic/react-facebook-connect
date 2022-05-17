@@ -11,7 +11,7 @@
   ],
   "author": "aviranbergic <72141009+aviranbergic@users.noreply.github.com>",
   "repository": {
-    "url": "",
+    "url": "https://github.com/aviranbergic/react-facebook-connect",
     "type": "git"
   },
   "homepage": "",
@@ -26,7 +26,8 @@
     "test:watch": "jest --coverage --watch",
     "test:ci": "cross-env CI=1 jest",
     "predeploy": "cd example && yarn install && yarn run build",
-    "deploy": "gh-pages -d example/build"
+    "deploy": "gh-pages -d example/build",
+    "lint": "eslint . --ext .ts --fix"
   },
   "engines": {
     "node": ">=10",
@@ -44,8 +45,8 @@
     "@types/node": "^16.6.0",
     "@types/react": "^17.0.17",
     "@types/react-dom": "^17.0.9",
-    "@typescript-eslint/eslint-plugin": "^4.29.1",
-    "@typescript-eslint/parser": "^4.29.1",
+    "@typescript-eslint/eslint-plugin": "^4.33.0",
+    "@typescript-eslint/parser": "^4.33.0",
     "cross-env": "^7.0.3",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
@@ -83,5 +84,9 @@
       "./node_modules/.bin/prettier --write",
       "./node_modules/.bin/eslint"
     ]
+  },
+  "dependencies": {
+    "is-mobile": "^3.1.1",
+    "react-icons": "^4.3.1"
   }
 }

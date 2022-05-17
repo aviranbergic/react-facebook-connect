@@ -1,6 +1,12 @@
-import AuthResponse from './AuthResponse';
+import { AuthResponse, LoginStatus } from 'types';
 
 export default interface FacebokLoginResponse {
-  status: string;
+  /**
+   * The Facebook Login Status.
+   */
+  status: LoginStatus;
+  /**
+   * If the status is connected, the following authResponse parameters are included in the response.
+   */
   authResponse: AuthResponse;
 }

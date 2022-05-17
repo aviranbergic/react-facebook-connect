@@ -1,10 +1,13 @@
-import useScript from 'hooks/useScript';
-import React, { FunctionComponent, useEffect } from 'react';
-import { ScriptFetchStatus } from 'types';
+import React, { CSSProperties, FC, FocusEventHandler, useEffect } from 'react';
+import mobile from 'is-mobile';
+
+import { useFacebookSDK } from 'hooks';
+import { FacebokLoginResponse, FacebokLoginResult, FacebookUserInfo, LoginStatus } from 'types';
+import { FacebookLoginButton } from './';
 
 export interface FacebookConnectProps {
   isDisabled: boolean;
-  callback: any;
+  callback: (data?: any) => {};
   appId: string;
   xfbml: boolean;
   cookie: boolean;
@@ -14,49 +17,129 @@ export interface FacebookConnectProps {
   responseType: string;
   returnScopes: boolean;
   redirectUri: string;
-  autoLoad: boolean;
   disableMobileRedirect: boolean;
-  isMobile: boolean;
   fields: string;
   version: string;
   language: string;
-  onClick: any;
-  onFailure: any;
+  onFailure: (error?: string) => {};
   isAsync: boolean;
   isAppendToHead: boolean;
   autoLogAppEvents: boolean;
-  callbackAfterSdkLoaded: any;
+  buttonSize: 'small' | 'medium' | 'large';
+  onFocus: FocusEventHandler<HTMLButtonElement>;
+  onBlur: FocusEventHandler<HTMLButtonElement>;
+  variant: 'primary' | 'secondary';
+  customStyle?: CSSProperties | undefined
+  children: React.ReactNode;
 }
 
-export const FacebookConnect: FunctionComponent<FacebookConnectProps> = ({
-  language,
-  isAsync,
-  isAppendToHead,
-  version,
+export const FacebookConnect: FC<FacebookConnectProps> = ({
+  callback,
+  onFocus,
+  onBlur,
+  onFailure,
   appId,
-  xfbml,
-  autoLogAppEvents,
-  ...props
-}) => {
-  useEffect(() => {
-    window.fbAsyncInit = () => {
-      window.FB.init({
-        version: `v${version}`,
-        appId,
-        xfbml,
-        autoLogAppEvents,
-      });
-    };
-  }, [version, appId, xfbml, autoLogAppEvents]);
+  xfbml = true,
+  cookie,
+  authType,
+  scope= 'public_profile',
+  state,
+  responseType = 'code',
+  returnScopes,
+  redirectUri = typeof window !== 'undefined' ? window.location.href : '/',
+  disableMobileRedirect,
+  fields = 'name',
+  version = '13.0',
+  language = 'en_US',
+  autoLogAppEvents = true,
+  buttonSize = 'large',
+  isDisabled,
+  variant = 'primary',
+  customStyle,
+  children
+}: FacebookConnectProps) => {
 
-  const sdkFetchStatus = useScript(
-    `https://connect.facebook.net/${language}/sdk.js`,
-    isAsync,
-    isAppendToHead
-  );
+  const { isReady, isError } = useFacebookSDK({ language, version, appId, xfbml, autoLogAppEvents, cookie });
 
-  if (sdkFetchStatus === ScriptFetchStatus.Error) {
-    return <h2>{props.isDisabled}</h2>;
+  const onFacebookStatusCheckResponse = (facebokLoginResponse: FacebokLoginResponse) => {
+    if (!facebokLoginResponse?.authResponse) {
+      handleError(facebokLoginResponse?.status as LoginStatus)
+    }
+    if (facebokLoginResponse?.status == LoginStatus.Connected) {
+      validateLoginStatus(facebokLoginResponse);
+    }
   }
-  return <h2>{props.isDisabled}</h2>;
+
+  const validateLoginStatus = (facebokLoginResponse: FacebokLoginResponse) => {
+    window.FB.api('/me', { locale: language, fields }, (userInfo: FacebookUserInfo) => {
+      const { authResponse, status } = facebokLoginResponse;
+      const loginResult: FacebokLoginResult = { authResponse, status, facebookUserInfo: userInfo }
+      callback(loginResult);
+    });
+  }
+
+  const handleError = (error: string, loginStatus?: LoginStatus) => {
+    const result: string = loginStatus ?? error;
+    if (onFailure) {
+      onFailure(result);
+    } else {
+      callback(result);
+    }
+  }
+
+  const facebookLoginClickHandler = () => {
+    const loginParams = {
+      client_id: appId,
+      redirect_uri: redirectUri,
+      state,
+      return_scopes: returnScopes,
+      scope,
+      response_type: responseType,
+      auth_type: authType,
+    };
+
+    if (mobile() && !disableMobileRedirect) {
+      window.location.href = `https://www.facebook.com/dialog/oauth${new URLSearchParams(loginParams as unknown as Record<string, string>).toString()}`;
+    } else {
+      if (!isReady) {
+        handleError('FacebookSdkNotLoaded')
+        return;
+      }
+
+      window.FB.getLoginStatus((facebokLoginResponse: FacebokLoginResponse) => {
+        if (facebokLoginResponse.status == LoginStatus.Connected) {
+          validateLoginStatus(facebokLoginResponse);
+        } else {
+          window.FB.login(onFacebookStatusCheckResponse, { scope, return_scopes: returnScopes, auth_type: loginParams.auth_type });
+        }
+      });
+    }
+  }
+
+  useEffect(() => {
+    if (isReady) {
+      window.FB.getLoginStatus((response: FacebokLoginResponse) => {
+        onFacebookStatusCheckResponse(response);
+      });
+    }
+
+    if (isError) {
+      handleError('FacebookSdkNotLoaded')
+    }
+
+  }, [isReady, isError])
+
+  return (
+    <FacebookLoginButton size={buttonSize}
+      variant={variant}
+      onClick={facebookLoginClickHandler}
+      onFocus={onFocus}
+      onBlur={onBlur}
+      isDisabled={isDisabled}
+      customStyle={customStyle}>
+      {children}
+    </FacebookLoginButton>
+  )
 };
+
+export default FacebookConnect;

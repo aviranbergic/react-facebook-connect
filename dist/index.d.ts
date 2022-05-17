@@ -1,10 +1,4 @@
-/// <reference types="react" />
-interface Props {
-    message?: string;
-}
-/**
- * Main Component
- */
-declare function Greeting(props: Props): JSX.Element;
-export default Greeting;
+import FacebookConnect from "components";
+export * from './types';
+export default FacebookConnect;
 //# sourceMappingURL=index.d.ts.map

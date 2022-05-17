@@ -1,0 +1,214 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>react-facebook-connect - v0.1.0</title>
+	<meta name="description" content="Documentation for react-facebook-connect - v0.1.0">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="assets/css/main.css">
+	<script async src="assets/js/search.js" id="search-script"></script>
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="assets/js/search.json" data-base=".">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="index.html" class="title">react-facebook-connect - v0.1.0</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<h1>react-facebook-connect - v0.1.0</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<div class="tsd-panel tsd-typography">
+				<a href="#react-facebook-connect" id="react-facebook-connect" style="color: inherit; text-decoration: none;">
+					<h1>React Facebook Connect</h1>
+				</a>
+				<blockquote>
+					<p>A React Component for Facebook Connect
+						This project was inspired by <a href="https://github.com/keppelen/react-facebook-login">https://github.com/keppelen/react-facebook-login</a>
+					Using more up to date react with functional components and hooks.</p>
+				</blockquote>
+				<a href="#getting-started" id="getting-started" style="color: inherit; text-decoration: none;">
+					<h2>Getting Started</h2>
+				</a>
+				<ul>
+					<li><code>yarn add react-facebook-connect</code> or <code>npm install react-facebook-connect</code></li>
+					<li>Your application will also need <code>react-dom</code> and <code>react</code> installed.</li>
+				</ul>
+				<a href="#development" id="development" style="color: inherit; text-decoration: none;">
+					<h2>Development</h2>
+				</a>
+				<pre><code class="language-shell"><span style="color: #000000">git clone https://github.com/aviranbergic/react-facebook-connect.git &amp;&amp; </span><span style="color: #795E26">cd</span><span style="color: #000000"> react-facebook-connect</span>
+<span style="color: #000000">npm install react react-dom react-facebook-connect --save --force</span>
+<span style="color: #000000">npm start</span>
+</code></pre>
+				<ul>
+					<li>navigate to <a href="http://localhost:8080">localhost:8080</a></li>
+				</ul>
+				<a href="#how-to-use" id="how-to-use" style="color: inherit; text-decoration: none;">
+					<h2>How to use</h2>
+				</a>
+				<a href="#basic-button" id="basic-button" style="color: inherit; text-decoration: none;">
+					<h3>Basic Button</h3>
+				</a>
+				<pre><code class="language-js"><span style="color: #AF00DB">import</span><span style="color: #000000"> </span><span style="color: #001080">React</span><span style="color: #000000"> </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;react&#039;</span><span style="color: #000000">;</span>
+<span style="color: #AF00DB">import</span><span style="color: #000000"> </span><span style="color: #001080">ReactDOM</span><span style="color: #000000"> </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;react-dom&#039;</span><span style="color: #000000">;</span>
+<span style="color: #AF00DB">import</span><span style="color: #000000"> </span><span style="color: #001080">FacebookConnect</span><span style="color: #000000"> </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;react-facebook-connect&#039;</span><span style="color: #000000">;</span>
+
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #795E26">callbackHandler</span><span style="color: #000000"> = (</span><span style="color: #001080">result</span><span style="color: #000000">: </span><span style="color: #267F99">FacebokLoginResult</span><span style="color: #000000"> | </span><span style="color: #267F99">string</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">  </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">facebokLoginResult</span><span style="color: #000000">);</span>
+<span style="color: #000000">}</span>
+
+<span style="color: #800000">&lt;</span><span style="color: #267F99">FacebookConnect</span><span style="color: #000000"> </span><span style="color: #FF0000">appId</span><span style="color: #000000">=</span><span style="color: #A31515">&quot;1138330606726062&quot;</span><span style="color: #000000"> </span><span style="color: #FF0000">fields</span><span style="color: #000000">=</span><span style="color: #A31515">&quot;name,email,picture&quot;</span><span style="color: #000000"> </span><span style="color: #FF0000">callback</span><span style="color: #000000">=</span><span style="color: #0000FF">{</span><span style="color: #001080">callbackHandler</span><span style="color: #0000FF">}</span><span style="color: #000000"> </span><span style="color: #FF0000">xfbml</span><span style="color: #000000"> </span><span style="color: #FF0000">buttonSize</span><span style="color: #000000">=</span><span style="color: #0000FF">{</span><span style="color: #A31515">&#039;medium&#039;</span><span style="color: #0000FF">}</span><span style="color: #000000"> </span><span style="color: #FF0000">vairant</span><span style="color: #000000">=</span><span style="color: #0000FF">{</span><span style="color: #A31515">&#039;primary&#039;</span><span style="color: #0000FF">}</span><span style="color: #800000">&gt;</span><span style="color: #000000"> Connect With Facebook </span>
+<span style="color: #800000">&lt;/</span><span style="color: #000000"> </span><span style="color: #267F99">FacebookConnect</span><span style="color: #800000">&gt;</span>
+</code></pre>
+				<a href="#override-button-with-costum-styling" id="override-button-with-costum-styling" style="color: inherit; text-decoration: none;">
+					<h3>Override button with costum styling</h3>
+				</a>
+				<p>If you&#39;re providing all your own custom styling, you can poass a style object to style the button as you like.</p>
+				<pre><code class="language-js">
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">style</span><span style="color: #000000"> = {</span>
+<span style="color: #000000">    </span><span style="color: #001080">width:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;500px&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #001080">color:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;white&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #001080">backgroundColor:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;blue&#039;</span>
+<span style="color: #000000">}</span>
+
+<span style="color: #800000">&lt;</span><span style="color: #267F99">FacebookConnect</span><span style="color: #000000"> </span><span style="color: #FF0000">appId</span><span style="color: #000000">=</span><span style="color: #A31515">&quot;1138330606726062&quot;</span><span style="color: #000000"> </span><span style="color: #FF0000">fields</span><span style="color: #000000">=</span><span style="color: #A31515">&quot;name,email,picture&quot;</span><span style="color: #000000"> </span><span style="color: #FF0000">callback</span><span style="color: #000000">=</span><span style="color: #0000FF">{</span><span style="color: #001080">callbackHandler</span><span style="color: #0000FF">}</span><span style="color: #000000"> </span><span style="color: #FF0000">customStyle</span><span style="color: #000000">=</span><span style="color: #0000FF">{</span><span style="color: #001080">style</span><span style="color: #0000FF">}</span><span style="color: #800000">&gt;</span><span style="color: #000000"> Connect With Facebook </span>
+<span style="color: #800000">&lt;/</span><span style="color: #000000"> </span><span style="color: #267F99">FacebookConnect</span><span style="color: #800000">&gt;</span>
+</code></pre>
+				<a href="#custom-permission" id="custom-permission" style="color: inherit; text-decoration: none;">
+					<h3>Custom permission</h3>
+				</a>
+				<p>By default the component, request only &#39;public_profile&#39; permission, you can change if you send &#39;scope&#39;, that is a string comma separated attribute.</p>
+				<p>see <a href="https://developers.facebook.com/docs/facebook-login/permissions">https://developers.facebook.com/docs/facebook-login/permissions</a> for permissions list</p>
+				<pre><code class="language-js"><span style="color: #800000">&lt;</span><span style="color: #267F99">FacebookConnect</span><span style="color: #000000"> </span><span style="color: #FF0000">appId</span><span style="color: #000000">=</span><span style="color: #A31515">&quot;1138330606726062&quot;</span><span style="color: #000000"> </span><span style="color: #FF0000">fields</span><span style="color: #000000">=</span><span style="color: #A31515">&quot;name,email,picture&quot;</span><span style="color: #000000"> </span><span style="color: #FF0000">callback</span><span style="color: #000000">=</span><span style="color: #0000FF">{</span><span style="color: #001080">callbackHandler</span><span style="color: #0000FF">}</span><span style="color: #000000"> </span><span style="color: #FF0000">xfbml</span><span style="color: #000000"> </span><span style="color: #FF0000">buttonSize</span><span style="color: #000000">=</span><span style="color: #0000FF">{</span><span style="color: #A31515">&#039;medium&#039;</span><span style="color: #0000FF">}</span><span style="color: #000000"> </span><span style="color: #FF0000">vairant</span><span style="color: #000000">=</span><span style="color: #0000FF">{</span><span style="color: #A31515">&#039;primary&#039;</span><span style="color: #0000FF">}</span>
+<span style="color: #FF0000">scope</span><span style="color: #000000">=</span><span style="color: #A31515">&quot;public_profile,user_friends,user_actions.books&quot;</span><span style="color: #800000">&gt;</span><span style="color: #000000"> Connect With Facebook </span>
+<span style="color: #800000">&lt;/</span><span style="color: #000000"> </span><span style="color: #267F99">FacebookConnect</span><span style="color: #800000">&gt;</span>
+</code></pre>
+			</div>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class=" ">
+						<a href="modules.html">Modules</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/Globals.html">Globals</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/components.html">components</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/components_FacebookConnect.html">components/<wbr>Facebook<wbr>Connect</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/components_FacebookLoginButton.html">components/<wbr>Facebook<wbr>Login<wbr>Button</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/hooks.html">hooks</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/hooks_useFacebookSDK.html">hooks/use<wbr>FacebookSDK</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/hooks_useScript.html">hooks/use<wbr>Script</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/index.html">index</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/types.html">types</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/types_AuthResponse.html">types/<wbr>Auth<wbr>Response</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/types_FacebokLoginResponse.html">types/<wbr>Facebok<wbr>Login<wbr>Response</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/types_FacebokLoginResult.html">types/<wbr>Facebok<wbr>Login<wbr>Result</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/types_FacebookSDKSetting.html">types/<wbr>FacebookSDKSetting</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/types_FacebookUserInfo.html">types/<wbr>Facebook<wbr>User<wbr>Info</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/types_LoginStatus.html">types/<wbr>Login<wbr>Status</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/types_ScriptFetchStatus.html">types/<wbr>Script<wbr>Fetch<wbr>Status</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
+				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="assets/js/main.js"></script>
+</body>
+</html>

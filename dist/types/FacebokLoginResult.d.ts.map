@@ -1,0 +1,1 @@
+{"version":3,"file":"FacebokLoginResult.d.ts","sourceRoot":"","sources":["../../src/types/FacebokLoginResult.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,WAAW,EAAE,YAAY,EAAE,gBAAgB,EAAE,MAAM,OAAO,CAAC;AAEpE,MAAM,CAAC,OAAO,WAAW,kBAAkB;IACzC;;OAEG;IACH,gBAAgB,EAAE,gBAAgB,CAAC;IACnC;;OAEG;IACH,MAAM,EAAE,WAAW,CAAC;IACpB;;OAEG;IACH,YAAY,EAAE,YAAY,CAAC;CAC5B"}

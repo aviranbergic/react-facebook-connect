@@ -3,14 +3,19 @@ import { ScriptFetchStatus } from 'types';
 
 const DATA_STATUS = 'data-status';
 
+/**
+ * useScript - Custom hook used to fetch and inject a script.
+ */
 export default function useScript(
   src: string,
-  isAsync: boolean,
-  isAppendToHead: boolean
+  id: string,
+  isAsync: boolean = true,
+  isAppendToHead: boolean = true
 ) {
   const [status, setStatus] = useState(
     src ? ScriptFetchStatus.Loading : ScriptFetchStatus.Error
   );
+
   useEffect(() => {
     if (!src) {
       setStatus(ScriptFetchStatus.Idel);
@@ -21,8 +26,11 @@ export default function useScript(
     if (!script) {
       script = document.createElement('script');
       script.src = src;
-      script.async = isAsync;
+      if (isAsync) {
+        script.async = isAsync;
+      }
       script.setAttribute(DATA_STATUS, ScriptFetchStatus.Loading);
+      script.id = id;
 
       if (isAppendToHead) {
         document.head.appendChild(script);
@@ -51,6 +59,7 @@ export default function useScript(
           : ScriptFetchStatus.Error
       );
     };
+
     // Add event listeners
     script.addEventListener('load', setStateFromEvent);
     script.addEventListener('error', setStateFromEvent);
@@ -61,7 +70,7 @@ export default function useScript(
         script.removeEventListener('error', setStateFromEvent);
       }
     };
-  }, [src, isAppendToHead, isAsync]);
+  }, [src, id, isAsync, isAppendToHead]);
 
   return status;
 }
