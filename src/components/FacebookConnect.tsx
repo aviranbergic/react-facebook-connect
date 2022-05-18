@@ -31,6 +31,8 @@ export interface FacebookConnectProps {
   variant: 'primary' | 'secondary';
   customStyle?: CSSProperties | undefined
   Icon?: JSX.Element;
+  ariaLabel?: string;
+  buttonText:string;
   children: React.ReactNode;
 }
 
@@ -58,6 +60,8 @@ export const FacebookConnect: FC<FacebookConnectProps> = ({
   variant = 'primary',
   customStyle,
   Icon,
+  ariaLabel,
+  buttonText,
   children
 }: FacebookConnectProps) => {
 
@@ -132,14 +136,17 @@ export const FacebookConnect: FC<FacebookConnectProps> = ({
   }, [isReady, isError])
 
   return (
-    <FacebookLoginButton size={buttonSize}
+    <FacebookLoginButton 
+      size={buttonSize}
       variant={variant}
       onClick={facebookLoginClickHandler}
       onFocus={onFocus}
       onBlur={onBlur}
       isDisabled={isDisabled}
       Icon={Icon}
-      customStyle={customStyle}>
+      customStyle={customStyle}
+      ariaLabel={ariaLabel}
+      buttonText={buttonText}>
       {children}
     </FacebookLoginButton>
   )

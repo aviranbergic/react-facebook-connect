@@ -28,6 +28,8 @@ interface FacebookLoginButtonProps {
     variant: 'primary' | 'secondary';
     Icon?: JSX.Element;
     customStyle?: CSSProperties | undefined
+    ariaLabel?: string;
+    buttonText?: string;
     children?: React.ReactNode;
 }
 
@@ -40,6 +42,8 @@ const FacebookLoginButton: React.FC<FacebookLoginButtonProps> = ({
     variant,
     Icon,
     children,
+    ariaLabel,
+    buttonText,
     customStyle
 }: FacebookLoginButtonProps) => {
     const getStyle = (customStyle: CSSProperties | undefined, size: 'small' | 'medium' | 'large', variant: 'primary' | 'secondary', isDisabled: boolean): CSSProperties => {
@@ -83,11 +87,12 @@ const FacebookLoginButton: React.FC<FacebookLoginButtonProps> = ({
             onFocus={onFocus}
             onBlur={onBlur}
             disabled={isDisabled}
+            aria-label={ariaLabel}
             style={getStyle(customStyle, size, variant, isDisabled)}
         >
             {Icon ? Icon : <FaFacebook style={getIconStyle(customStyle, size)} />}
             <span>
-                {children}
+                {buttonText ? buttonText : children}
             </span>
         </button>
     );

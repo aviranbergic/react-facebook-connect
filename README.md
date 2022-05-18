@@ -2,7 +2,8 @@
 
 > A React Component for Facebook Connect
 > This project was inspired by <https://github.com/keppelen/react-facebook-login>
-> Using more up to date react with functional components and hooks.
+> Using more up to date react with functional components, hooks and typescript.
+> Support both commonJS and ecmaScript modules.
 
 ## Getting Started
 
@@ -24,23 +25,33 @@ npm start
 ### Basic Button
 
 ```js
-import React from 'react';
-import ReactDOM from 'react-dom';
-import FacebookConnect from 'react-facebook-connect';
+import FacebookConnect, { FacebokLoginResult } from 'react-facebook-connect';
 
 const callbackHandler = (result: FacebokLoginResult | string) => {
-  console.log(facebokLoginResult);
+  console.log(result);
 }
 
-<FacebookConnect appId="1138330606726062" fields="name,email,picture" callback={callbackHandler} xfbml buttonSize={'medium'} vairant={'primary'}> Connect With Facebook 
-</ FacebookConnect>
+<FacebookConnect appId='1138330606726062'
+                 fields='name,email,picture' 
+                 callback={callbackHandler} 
+                 xfbml buttonSize='medium'
+                 vairant='primary'
+                 buttonText='Continue With Facebook'
+                 ariaLabel='Continue With Facebook'
+                 /> 
 ```
 
 ### Override button with costum styling
 
-If you're providing all your own custom styling, you can poass a style object to style the button as you like.
+You can provide your own custom styling + Icon (non mandatory).
 
 ```js
+import FacebookConnect, { FacebokLoginResult } from 'react-facebook-connect';
+import { SomeIcon } from './SomeIcon'
+
+const callbackHandler = (result: FacebokLoginResult | string) => {
+  console.log(result);
+}
 
 const style = {
     width: '500px',
@@ -48,7 +59,26 @@ const style = {
     backgroundColor: 'blue'
 }
 
-<FacebookConnect appId="1138330606726062" fields="name,email,picture" callback={callbackHandler} customStyle={style}> Connect With Facebook 
+<FacebookConnect appId='1138330606726062' fields='name,email,picture' callback={callbackHandler} customStyle={style} Icon={<SomeIcon/>}> 
+Connect With Facebook 
+</ FacebookConnect>
+```
+
+### Passing Children
+
+If You need to add more layers to the button.
+
+#### buttonText and children cannot be used at the same time
+
+```js
+import FacebookConnect, { FacebokLoginResult } from 'react-facebook-connect';
+
+const callbackHandler = (result: FacebokLoginResult | string) => {
+  console.log(result);
+}
+
+<FacebookConnect appId='1138330606726062' fields='name,email,picture' callback={callbackHandler}> 
+Connect With Facebook 
 </ FacebookConnect>
 ```
 
@@ -59,7 +89,13 @@ By default the component, request only 'public_profile' permission, you can chan
 see <https://developers.facebook.com/docs/facebook-login/permissions> for permissions list
 
 ```js
-<FacebookConnect appId="1138330606726062" fields="name,email,picture" callback={callbackHandler} xfbml buttonSize={'medium'} vairant={'primary'}
-scope="public_profile,user_friends,user_actions.books"> Connect With Facebook 
+import FacebookConnect, { FacebokLoginResult } from 'react-facebook-connect';
+
+const callbackHandler = (result: FacebokLoginResult | string) => {
+  console.log(result);
+}
+
+<FacebookConnect appId='1138330606726062' fields='name,email,picture' callback={callbackHandler} xfbml buttonSize='medium' vairant='primary'
+scope='public_profile,user_friends,user_actions.books'> Connect With Facebook 
 </ FacebookConnect>
 ```

@@ -64,7 +64,8 @@
 				<blockquote>
 					<p>A React Component for Facebook Connect
 						This project was inspired by <a href="https://github.com/keppelen/react-facebook-login">https://github.com/keppelen/react-facebook-login</a>
-					Using more up to date react with functional components and hooks.</p>
+						Using more up to date react with functional components, hooks and typescript.
+					Support both commonJS and ecmaScript modules.</p>
 				</blockquote>
 				<a href="#getting-started" id="getting-started" style="color: inherit; text-decoration: none;">
 					<h2>Getting Started</h2>
@@ -94,26 +95,60 @@
 <span style="color: #AF00DB">import</span><span style="color: #000000"> </span><span style="color: #001080">FacebookConnect</span><span style="color: #000000"> </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;react-facebook-connect&#039;</span><span style="color: #000000">;</span>
 
 <span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #795E26">callbackHandler</span><span style="color: #000000"> = (</span><span style="color: #001080">result</span><span style="color: #000000">: </span><span style="color: #267F99">FacebokLoginResult</span><span style="color: #000000"> | </span><span style="color: #267F99">string</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
-<span style="color: #000000">  </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">facebokLoginResult</span><span style="color: #000000">);</span>
+<span style="color: #000000">  </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">result</span><span style="color: #000000">);</span>
 <span style="color: #000000">}</span>
 
-<span style="color: #800000">&lt;</span><span style="color: #267F99">FacebookConnect</span><span style="color: #000000"> </span><span style="color: #FF0000">appId</span><span style="color: #000000">=</span><span style="color: #A31515">&quot;1138330606726062&quot;</span><span style="color: #000000"> </span><span style="color: #FF0000">fields</span><span style="color: #000000">=</span><span style="color: #A31515">&quot;name,email,picture&quot;</span><span style="color: #000000"> </span><span style="color: #FF0000">callback</span><span style="color: #000000">=</span><span style="color: #0000FF">{</span><span style="color: #001080">callbackHandler</span><span style="color: #0000FF">}</span><span style="color: #000000"> </span><span style="color: #FF0000">xfbml</span><span style="color: #000000"> </span><span style="color: #FF0000">buttonSize</span><span style="color: #000000">=</span><span style="color: #0000FF">{</span><span style="color: #A31515">&#039;medium&#039;</span><span style="color: #0000FF">}</span><span style="color: #000000"> </span><span style="color: #FF0000">vairant</span><span style="color: #000000">=</span><span style="color: #0000FF">{</span><span style="color: #A31515">&#039;primary&#039;</span><span style="color: #0000FF">}</span><span style="color: #800000">&gt;</span><span style="color: #000000"> Connect With Facebook </span>
-<span style="color: #800000">&lt;/</span><span style="color: #000000"> </span><span style="color: #267F99">FacebookConnect</span><span style="color: #800000">&gt;</span>
+<span style="color: #800000">&lt;</span><span style="color: #267F99">FacebookConnect</span><span style="color: #000000"> </span><span style="color: #FF0000">appId</span><span style="color: #000000">=</span><span style="color: #A31515">&quot;1138330606726062&quot;</span>
+<span style="color: #000000">                 </span><span style="color: #FF0000">fields</span><span style="color: #000000">=</span><span style="color: #A31515">&quot;name,email,picture&quot;</span><span style="color: #000000"> </span>
+<span style="color: #000000">                 </span><span style="color: #FF0000">callback</span><span style="color: #000000">=</span><span style="color: #0000FF">{</span><span style="color: #001080">callbackHandler</span><span style="color: #0000FF">}</span><span style="color: #000000"> </span>
+<span style="color: #000000">                 </span><span style="color: #FF0000">xfbml</span><span style="color: #000000"> </span><span style="color: #FF0000">buttonSize</span><span style="color: #000000">=</span><span style="color: #0000FF">{</span><span style="color: #A31515">&#039;medium&#039;</span><span style="color: #0000FF">}</span>
+<span style="color: #000000">                 </span><span style="color: #FF0000">vairant</span><span style="color: #000000">=</span><span style="color: #0000FF">{</span><span style="color: #A31515">&#039;primary&#039;</span><span style="color: #0000FF">}</span>
+<span style="color: #000000">                 </span><span style="color: #FF0000">buttonText</span><span style="color: #000000">=</span><span style="color: #0000FF">{</span><span style="color: #A31515">&#039;Continue With Facebook&#039;</span><span style="color: #0000FF">}</span>
+<span style="color: #000000">                 </span><span style="color: #FF0000">ariaLabel</span><span style="color: #000000">=</span><span style="color: #0000FF">{</span><span style="color: #A31515">&#039;Continue With Facebook&#039;</span><span style="color: #0000FF">}</span><span style="color: #000000"> </span>
+<span style="color: #000000">                 </span><span style="color: #800000">/&gt;</span><span style="color: #000000"> </span>
 </code></pre>
 				<a href="#override-button-with-costum-styling" id="override-button-with-costum-styling" style="color: inherit; text-decoration: none;">
 					<h3>Override button with costum styling</h3>
 				</a>
-				<p>If you&#39;re providing all your own custom styling, you can poass a style object to style the button as you like.</p>
-				<pre><code class="language-js">
+				<p>You can provide your own custom styling + Icon (non mandatory).</p>
+				<pre><code class="language-js"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">SomeIcon</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;./SomeIcon&#039;</span>
+
 <span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">style</span><span style="color: #000000"> = {</span>
 <span style="color: #000000">    </span><span style="color: #001080">width:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;500px&#039;</span><span style="color: #000000">,</span>
 <span style="color: #000000">    </span><span style="color: #001080">color:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;white&#039;</span><span style="color: #000000">,</span>
 <span style="color: #000000">    </span><span style="color: #001080">backgroundColor:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;blue&#039;</span>
 <span style="color: #000000">}</span>
 
-<span style="color: #800000">&lt;</span><span style="color: #267F99">FacebookConnect</span><span style="color: #000000"> </span><span style="color: #FF0000">appId</span><span style="color: #000000">=</span><span style="color: #A31515">&quot;1138330606726062&quot;</span><span style="color: #000000"> </span><span style="color: #FF0000">fields</span><span style="color: #000000">=</span><span style="color: #A31515">&quot;name,email,picture&quot;</span><span style="color: #000000"> </span><span style="color: #FF0000">callback</span><span style="color: #000000">=</span><span style="color: #0000FF">{</span><span style="color: #001080">callbackHandler</span><span style="color: #0000FF">}</span><span style="color: #000000"> </span><span style="color: #FF0000">customStyle</span><span style="color: #000000">=</span><span style="color: #0000FF">{</span><span style="color: #001080">style</span><span style="color: #0000FF">}</span><span style="color: #800000">&gt;</span><span style="color: #000000"> Connect With Facebook </span>
+<span style="color: #800000">&lt;</span><span style="color: #267F99">FacebookConnect</span><span style="color: #000000"> </span><span style="color: #FF0000">appId</span><span style="color: #000000">=</span><span style="color: #A31515">&quot;1138330606726062&quot;</span><span style="color: #000000"> </span><span style="color: #FF0000">fields</span><span style="color: #000000">=</span><span style="color: #A31515">&quot;name,email,picture&quot;</span><span style="color: #000000"> </span><span style="color: #FF0000">callback</span><span style="color: #000000">=</span><span style="color: #0000FF">{</span><span style="color: #001080">callbackHandler</span><span style="color: #0000FF">}</span><span style="color: #000000"> </span><span style="color: #FF0000">customStyle</span><span style="color: #000000">=</span><span style="color: #0000FF">{</span><span style="color: #001080">style</span><span style="color: #0000FF">}</span><span style="color: #000000"> </span><span style="color: #FF0000">Icon</span><span style="color: #000000">=</span><span style="color: #0000FF">{</span><span style="color: #800000">&lt;</span><span style="color: #267F99">SomeIcon</span><span style="color: #800000">/&gt;</span><span style="color: #0000FF">}</span><span style="color: #800000">&gt;</span><span style="color: #000000"> </span>
+<span style="color: #000000">Connect With Facebook </span>
 <span style="color: #800000">&lt;/</span><span style="color: #000000"> </span><span style="color: #267F99">FacebookConnect</span><span style="color: #800000">&gt;</span>
 </code></pre>
+				<a href="#passing-children" id="passing-children" style="color: inherit; text-decoration: none;">
+					<h3>Passing Children</h3>
+				</a>
+				<p>If You need to add more layers to the button. ###buttonText and children cannot be used at the same time.</p>
+				<pre><code class="language-js"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">SomeIcon</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;./SomeIcon&#039;</span>
+
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">style</span><span style="color: #000000"> = {</span>
+<span style="color: #000000">    </span><span style="color: #001080">width:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;500px&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #001080">color:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;white&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #001080">backgroundColor:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;blue&#039;</span>
+<span style="color: #000000">}</span>
+
+<span style="color: #800000">&lt;</span><span style="color: #267F99">FacebookConnect</span><span style="color: #000000"> </span><span style="color: #FF0000">appId</span><span style="color: #000000">=</span><span style="color: #A31515">&quot;1138330606726062&quot;</span><span style="color: #000000"> </span><span style="color: #FF0000">fields</span><span style="color: #000000">=</span><span style="color: #A31515">&quot;name,email,picture&quot;</span><span style="color: #000000"> </span><span style="color: #FF0000">callback</span><span style="color: #000000">=</span><span style="color: #0000FF">{</span><span style="color: #001080">callbackHandler</span><span style="color: #0000FF">}</span><span style="color: #800000">&gt;</span><span style="color: #000000"> </span>
+<span style="color: #000000">Connect With Facebook </span>
+<span style="color: #800000">&lt;/</span><span style="color: #000000"> </span><span style="color: #267F99">FacebookConnect</span><span style="color: #800000">&gt;</span>
+</code></pre>
+				<p>&lt;FacebookConnect appId=&quot;1138330606726062&quot;
+					fields=&quot;name,email,picture&quot;
+					callback={callbackHandler}
+					xfbml buttonSize={&#39;medium&#39;}
+					vairant={&#39;primary&#39;}
+					buttonText={&#39;Continue With Facebook&#39;}
+					ariaLabel={&#39;Continue With Facebook&#39;}
+					&gt;
+					Connect With Facebook
+				&lt;/ FacebookConnect&gt;</p>
 				<a href="#custom-permission" id="custom-permission" style="color: inherit; text-decoration: none;">
 					<h3>Custom permission</h3>
 				</a>
