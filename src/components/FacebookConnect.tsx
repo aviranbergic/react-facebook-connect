@@ -17,7 +17,7 @@ export interface FacebookConnectProps {
   responseType: string;
   returnScopes: boolean;
   redirectUri: string;
-  disableMobileRedirect: boolean;
+  allowMobileRedirect: boolean;
   fields: string;
   version: string;
   language: string;
@@ -32,7 +32,7 @@ export interface FacebookConnectProps {
   customStyle?: CSSProperties | undefined
   Icon?: JSX.Element;
   ariaLabel?: string;
-  buttonText:string;
+  buttonText: string;
   children: React.ReactNode;
 }
 
@@ -45,12 +45,12 @@ export const FacebookConnect: FC<FacebookConnectProps> = ({
   xfbml = true,
   cookie,
   authType,
-  scope= 'public_profile',
+  scope = 'public_profile',
   state,
   responseType = 'code',
   returnScopes,
   redirectUri = typeof window !== 'undefined' ? window.location.href : '/',
-  disableMobileRedirect,
+  allowMobileRedirect,
   fields = 'name',
   version = '13.0',
   language = 'en_US',
@@ -93,8 +93,12 @@ export const FacebookConnect: FC<FacebookConnectProps> = ({
     }
   }
 
+  const buildQueryString = (loginParams: Record<string, any>) => {
+    return Object.keys(loginParams).map(key => `${key}=${encodeURIComponent(loginParams[key])}`).join('&');
+  }
+
   const facebookLoginClickHandler = () => {
-    const loginParams = {
+    const loginParams: Record<string, any> = {
       client_id: appId,
       redirect_uri: redirectUri,
       state,
@@ -103,9 +107,9 @@ export const FacebookConnect: FC<FacebookConnectProps> = ({
       response_type: responseType,
       auth_type: authType,
     };
-
-    if (mobile() && !disableMobileRedirect) {
-      window.location.href = `https://www.facebook.com/dialog/oauth${new URLSearchParams(loginParams as unknown as Record<string, string>).toString()}`;
+    
+    if (mobile() && allowMobileRedirect) {
+      window.location.href = `https://www.facebook.com/dialog/oauth?${buildQueryString(loginParams)}`
     } else {
       if (!isReady) {
         handleError('FacebookSdkNotLoaded')
@@ -136,7 +140,7 @@ export const FacebookConnect: FC<FacebookConnectProps> = ({
   }, [isReady, isError])
 
   return (
-    <FacebookLoginButton 
+    <FacebookLoginButton
       size={buttonSize}
       variant={variant}
       onClick={facebookLoginClickHandler}

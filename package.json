@@ -1,20 +1,24 @@
 {
   "name": "react-facebook-connect",
-  "version": "0.1.0",
-  "keywords": [],
-  "description": "",
+  "version": "1.0.1",
+  "keywords": [
+    "react",
+    "facebook-login",
+    "react-facebook-connect"
+  ],
+  "description": "A React Functional component for Facebook connect/login written with typescript",
   "main": "dist/index.min.js",
   "module": "dist/index.es.js",
   "types": "dist/index.d.ts",
   "files": [
     "dist"
   ],
-  "author": "aviranbergic <72141009+aviranbergic@users.noreply.github.com>",
+  "author": "aviranbergic <aviranbergic@gmail.com>",
   "repository": {
     "url": "https://github.com/aviranbergic/react-facebook-connect",
     "type": "git"
   },
-  "homepage": "",
+  "homepage": "https://github.com/aviranbergic/react-facebook-connect",
   "license": "MIT",
   "private": true,
   "scripts": {
