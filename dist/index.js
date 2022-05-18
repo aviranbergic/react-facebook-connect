@@ -362,11 +362,17 @@ var FacebookLoginButton = function (_a) {
             fontFamily: 'Helvetica, Arial, sans-serif',
         };
     };
+    var getIconStyle = function (customStyle, size) {
+        if (customStyle) {
+            return undefined;
+        }
+        return {
+            fontSize: ICON_FONT_SIZE[size],
+            marginRight: '6px'
+        };
+    };
     return (React__default['default'].createElement("button", { onClick: onClick, onFocus: onFocus, onBlur: onBlur, disabled: isDisabled, style: getStyle(customStyle, size, variant, isDisabled) },
-        React__default['default'].createElement(FaFacebook, { style: {
-                fontSize: ICON_FONT_SIZE[size],
-                marginRight: '6px'
-            } }),
+        React__default['default'].createElement(FaFacebook, { style: getIconStyle(customStyle, size) }),
         React__default['default'].createElement("span", null, children)));
 };
 

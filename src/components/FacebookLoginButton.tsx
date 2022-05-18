@@ -64,6 +64,16 @@ const FacebookLoginButton: React.FC<FacebookLoginButtonProps> = ({
         }
     }
 
+    const getIconStyle = (customStyle: CSSProperties | undefined, size: 'small' | 'medium' | 'large'): CSSProperties | undefined => {
+        if (customStyle) {
+            return undefined;
+        }
+        return {
+            fontSize: ICON_FONT_SIZE[size],
+            marginRight: '6px'
+        };
+    }
+
     return (
         <button
             onClick={onClick}
@@ -72,10 +82,7 @@ const FacebookLoginButton: React.FC<FacebookLoginButtonProps> = ({
             disabled={isDisabled}
             style={getStyle(customStyle, size, variant, isDisabled)}
         >
-            <FaFacebook style={{
-                fontSize: ICON_FONT_SIZE[size],
-                marginRight: '6px'
-            }} />
+            <FaFacebook style={getIconStyle(customStyle, size)} />
             <span>
                 {children}
             </span>

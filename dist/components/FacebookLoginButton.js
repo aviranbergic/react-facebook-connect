@@ -39,11 +39,17 @@ var FacebookLoginButton = function (_a) {
             fontFamily: 'Helvetica, Arial, sans-serif',
         };
     };
+    var getIconStyle = function (customStyle, size) {
+        if (customStyle) {
+            return undefined;
+        }
+        return {
+            fontSize: ICON_FONT_SIZE[size],
+            marginRight: '6px'
+        };
+    };
     return (React.createElement("button", { onClick: onClick, onFocus: onFocus, onBlur: onBlur, disabled: isDisabled, style: getStyle(customStyle, size, variant, isDisabled) },
-        React.createElement(FaFacebook, { style: {
-                fontSize: ICON_FONT_SIZE[size],
-                marginRight: '6px'
-            } }),
+        React.createElement(FaFacebook, { style: getIconStyle(customStyle, size) }),
         React.createElement("span", null, children)));
 };
 export default FacebookLoginButton;
