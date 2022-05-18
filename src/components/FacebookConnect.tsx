@@ -30,6 +30,7 @@ export interface FacebookConnectProps {
   onBlur: FocusEventHandler<HTMLButtonElement>;
   variant: 'primary' | 'secondary';
   customStyle?: CSSProperties | undefined
+  Icon?: JSX.Element;
   children: React.ReactNode;
 }
 
@@ -56,6 +57,7 @@ export const FacebookConnect: FC<FacebookConnectProps> = ({
   isDisabled,
   variant = 'primary',
   customStyle,
+  Icon,
   children
 }: FacebookConnectProps) => {
 
@@ -136,6 +138,7 @@ export const FacebookConnect: FC<FacebookConnectProps> = ({
       onFocus={onFocus}
       onBlur={onBlur}
       isDisabled={isDisabled}
+      Icon={Icon}
       customStyle={customStyle}>
       {children}
     </FacebookLoginButton>

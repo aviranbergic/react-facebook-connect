@@ -7,7 +7,6 @@
 .DS_Store
 .AppleDouble
 .LSOverride
-dist/
 
 # Icon must end with two \r
 Icon
@@ -74,6 +73,7 @@ build/Release
 # Dependency directories
 node_modules/
 jspm_packages/
+dist/
 
 # TypeScript v1 declaration files
 typings/

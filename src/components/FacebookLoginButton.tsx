@@ -26,8 +26,9 @@ interface FacebookLoginButtonProps {
     onBlur: FocusEventHandler<HTMLButtonElement>,
     isDisabled: boolean,
     variant: 'primary' | 'secondary';
-    children?: React.ReactNode;
+    Icon?: JSX.Element;
     customStyle?: CSSProperties | undefined
+    children?: React.ReactNode;
 }
 
 const FacebookLoginButton: React.FC<FacebookLoginButtonProps> = ({
@@ -37,6 +38,7 @@ const FacebookLoginButton: React.FC<FacebookLoginButtonProps> = ({
     onBlur,
     isDisabled,
     variant,
+    Icon,
     children,
     customStyle
 }: FacebookLoginButtonProps) => {
@@ -74,6 +76,7 @@ const FacebookLoginButton: React.FC<FacebookLoginButtonProps> = ({
         };
     }
 
+
     return (
         <button
             onClick={onClick}
@@ -82,7 +85,7 @@ const FacebookLoginButton: React.FC<FacebookLoginButtonProps> = ({
             disabled={isDisabled}
             style={getStyle(customStyle, size, variant, isDisabled)}
         >
-            <FaFacebook style={getIconStyle(customStyle, size)} />
+            {Icon ? Icon : <FaFacebook style={getIconStyle(customStyle, size)} />}
             <span>
                 {children}
             </span>
