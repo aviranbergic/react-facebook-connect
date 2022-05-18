@@ -3,7 +3,6 @@ import json from 'rollup-plugin-json';
 import resolve from 'rollup-plugin-node-resolve';
 import postcss from 'rollup-plugin-postcss';
 import external from 'rollup-plugin-peer-deps-external';
-import sourceMaps from 'rollup-plugin-sourcemaps';
 import { terser } from 'rollup-plugin-terser';
 import typescript from 'rollup-plugin-typescript2';
 import pkg from './package.json';
@@ -14,21 +13,21 @@ export default {
     {
       file: pkg.main,
       format: 'cjs',
-      sourcemap: true,
+      sourcemap: false,
       plugins: [terser()],
       exports: 'auto',
     },
     {
       file: pkg.module,
       format: 'es',
-      sourcemap: true,
+      sourcemap: false,
       plugins: [terser()],
       exports: 'auto',
     },
     {
       file: 'dist/index.js',
       format: 'cjs',
-      sourcemap: true,
+      sourcemap: false,
       exports: 'auto',
     },
   ],
@@ -55,7 +54,5 @@ export default {
     resolve(),
     // Allow bundling cjs modules (unlike webpack, rollup doesn't understand cjs)
     commonjs(),
-    // Resolve source maps to the original source
-    sourceMaps(),
   ],
 };

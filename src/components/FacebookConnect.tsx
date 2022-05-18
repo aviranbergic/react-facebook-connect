@@ -3,7 +3,7 @@ import mobile from 'is-mobile';
 
 import { useFacebookSDK } from 'hooks';
 import { FacebokLoginResponse, FacebokLoginResult, FacebookUserInfo, LoginStatus } from 'types';
-import { FacebookLoginButton } from './';
+import FacebookLoginButton from './FacebookLoginButton';
 
 export interface FacebookConnectProps {
   isDisabled: boolean;
