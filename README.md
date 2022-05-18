@@ -1,9 +1,9 @@
 # React Facebook Connect
 
-> A React Component for Facebook Connect
-> This project was inspired by <https://github.com/keppelen/react-facebook-login>
+> A React Component for Facebook Connect.
+> This project was inspired by <https://github.com/keppelen/react-facebook-login>.
 > Using more up to date react with functional components, hooks and typescript.
-> Support both commonJS and ecmaScript modules.
+> Support both commonJS and EcmaScript modules.
 
 ## Getting Started
 
@@ -59,9 +59,12 @@ const style = {
     backgroundColor: 'blue'
 }
 
-<FacebookConnect appId='1138330606726062' fields='name,email,picture' callback={callbackHandler} customStyle={style} Icon={<SomeIcon/>}> 
-Connect With Facebook 
-</ FacebookConnect>
+<FacebookConnect appId='1138330606726062'
+                 fields='name,email,picture' 
+                 callback={callbackHandler} 
+                 customStyle={style} 
+                 Icon={<SomeIcon/>} 
+                 buttonText='Continue With Facebook' /> 
 ```
 
 ### Passing Children
@@ -77,8 +80,10 @@ const callbackHandler = (result: FacebokLoginResult | string) => {
   console.log(result);
 }
 
-<FacebookConnect appId='1138330606726062' fields='name,email,picture' callback={callbackHandler}> 
-Connect With Facebook 
+<FacebookConnect appId='1138330606726062' 
+                 fields='name,email,picture' 
+                 callback={callbackHandler}> 
+<div> Connect With Facebook </div>
 </ FacebookConnect>
 ```
 
@@ -95,7 +100,13 @@ const callbackHandler = (result: FacebokLoginResult | string) => {
   console.log(result);
 }
 
-<FacebookConnect appId='1138330606726062' fields='name,email,picture' callback={callbackHandler} xfbml buttonSize='medium' vairant='primary'
-scope='public_profile,user_friends,user_actions.books'> Connect With Facebook 
+<FacebookConnect appId='1138330606726062'
+                 fields='name,email,picture' 
+                 callback={callbackHandler} 
+                 xfbml 
+                 buttonSize='medium' 
+                 vairant='primary'
+                 scope='public_profile,user_friends,user_actions.books'> 
+                 Connect With Facebook 
 </ FacebookConnect>
 ```

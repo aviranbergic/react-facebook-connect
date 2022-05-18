@@ -20,7 +20,6 @@
   },
   "homepage": "https://github.com/aviranbergic/react-facebook-connect",
   "license": "MIT",
-  "private": true,
   "scripts": {
     "start": "rollup -c rollup.config.js -w",
     "build": "tsc && rollup -c rollup.config.js && yarn make:docs",

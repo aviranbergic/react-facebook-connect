@@ -8,7 +8,7 @@
     "@testing-library/user-event": "^12.1.10",
     "react": "link:../node_modules/react",
     "react-dom": "link:../node_modules/react-dom",
-    "react-facebook-connect": "link:..",
+    "react-facebook-connect": "^1.0.1",
     "react-facebook-login": "^4.1.1",
     "react-scripts": "^5.0.1",
     "web-vitals": "^1.0.1"
