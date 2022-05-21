@@ -127,7 +127,7 @@ export const FacebookConnect: FC<FacebookConnectProps> = ({
   }
 
   useEffect(() => {
-    if (isReady) {
+    if (isReady && !(mobile() && allowMobileRedirect)) {
       window.FB.getLoginStatus((response: FacebokLoginResponse) => {
         onFacebookStatusCheckResponse(response);
       });
